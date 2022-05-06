@@ -1,8 +1,8 @@
-import io from 'socket.io-client';
+import {Socket} from 'socket.io-client';
 import {Chat, Message, Notice} from '../types/messaging';
 import {useCallback, useEffect, useState} from 'react';
 
-export default function useMessages(socket: ReturnType<typeof io>) {
+export default function useMessages(socket: Socket) {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const updateChat = useCallback(
