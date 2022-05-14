@@ -1,4 +1,4 @@
-const baseUrl = 'http://10.0.1.10:9999';
+const baseUrl = 'https://chat-api.potados.com';
 
 const Config = {
   baseUrl,
