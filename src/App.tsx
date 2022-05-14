@@ -9,6 +9,7 @@ import MessageItem from './components/MessageItem';
 import useGreetings from './hooks/useGreetings';
 import ExpandableTextArea from './components/ExpandableTextArea';
 import React, {useEffect, useRef, useState} from 'react';
+import truncate from './common/utils';
 
 const socket = io(Config.baseUrl);
 
@@ -53,7 +54,7 @@ function App() {
         <Clients>
           {clients
             .sort((l, r) => l.enteredAt - r.enteredAt)
-            .map((m) => m.username)
+            .map((m) => truncate(m.username, 10))
             .join(', ')}
         </Clients>
       </Toolbar>
