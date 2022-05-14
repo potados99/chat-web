@@ -60,7 +60,7 @@ function App() {
       <Messages>
         <NonStyledList>
           {messages
-            .sort((l, r) => l.sentAt - r.sentAt)
+            .sort((l, r) => l.receivedAt - r.receivedAt)
             .map((m) => (
               <MessageItem key={JSON.stringify(m)} message={m} />
             ))}
