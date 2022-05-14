@@ -1,5 +1,6 @@
 import {Chat} from '../types/messaging';
 import styled from 'styled-components';
+import truncate from '../common/utils';
 
 type Props = {
   chat: Chat;
@@ -9,7 +10,7 @@ export default function ChatItem({chat}: Props) {
   return (
     <Container>
       <SenderAndTimestamp>
-        <Sender>{chat.sender}</Sender>
+        <Sender>{truncate(chat.sender, 10)}</Sender>
         <Timestamp>{new Date(chat.sentAt).toLocaleTimeString()}</Timestamp>
       </SenderAndTimestamp>
       <Body>{chat.body}</Body>
@@ -40,6 +41,7 @@ const SenderAndTimestamp = styled.div`
 `;
 
 const Sender = styled.div`
+  font-weight: 600;
   font-size: 14px;
   color: #202020;
 `;
