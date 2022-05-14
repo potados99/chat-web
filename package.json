@@ -1,7 +1,7 @@
 {
   "name": "chat-web",
   "version": "0.1.0",
-  "private": true,
+  "description": "Chat 웹 클라이언트입니다.",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",

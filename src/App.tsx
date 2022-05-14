@@ -128,7 +128,7 @@ const Clients = styled.div`
 
 const Messages = styled.div`
   display: flex;
-  padding-top: 40px;
+  padding-top: 30px;
   padding-bottom: 40px;
 `;
 
