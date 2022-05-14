@@ -10,7 +10,7 @@ export default function ChatItem({chat}: Props) {
     <Container>
       <SenderAndTimestamp>
         <Sender>{chat.sender}</Sender>
-        <Timestamp>{new Date(chat.sentAt).toTimeString()}</Timestamp>
+        <Timestamp>{new Date(chat.sentAt).toLocaleTimeString()}</Timestamp>
       </SenderAndTimestamp>
       <Body>{chat.body}</Body>
     </Container>
@@ -24,7 +24,7 @@ const Container = styled.div`
   justify-content: start;
   align-items: start;
 
-  margin: 16px;
+  margin: 20px 16px 20px 16px;
   gap: 4px;
 `;
 
@@ -40,15 +40,17 @@ const SenderAndTimestamp = styled.div`
 `;
 
 const Sender = styled.div`
-  font-size: 16px;
+  font-size: 14px;
+  color: #202020;
 `;
 
 const Timestamp = styled.div`
   font-size: 12px;
-  color: lightslategray;
+  color: #a0a0a0;
 `;
 
 const Body = styled.div`
   font-size: 16px;
   white-space: pre-wrap;
+  color: #404040;
 `;

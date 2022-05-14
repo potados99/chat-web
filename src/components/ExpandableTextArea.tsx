@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 export default function ExpandableTextArea({
   children,
   value,
-  onInput,
-  onChange,
   ...rest
 }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  const [scrollHeight, setScrollHeight] = useState(0);
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const updateScrollHeight = () => {
@@ -16,7 +13,12 @@ export default function ExpandableTextArea({
       return;
     }
 
-    setScrollHeight(ref.current.scrollHeight);
+    /**
+     * 먼저 높이를 초기화해준 다음 scrollHeight을 적용합니다.
+     * 이렇게 하지 않으면 늘어난 높이가 다시 줄어들지 않습니다.
+     */
+    ref.current.style.height = 'inherit';
+    ref.current.style.height = `${ref.current.scrollHeight}px`;
   };
 
   useEffect(() => {
@@ -24,28 +26,15 @@ export default function ExpandableTextArea({
   }, [value]);
 
   return (
-    <TextArea
-      {...rest}
-      ref={ref}
-      value={value}
-      onInput={(e) => {
-        onInput?.call(null, e);
-        updateScrollHeight();
-      }}
-      onChange={(e) => {
-        onChange?.call(null, e);
-        updateScrollHeight();
-      }}
-      scrollHeight={scrollHeight}
-    >
+    <TextArea {...rest} ref={ref} value={value} rows={1}>
       {children}
     </TextArea>
   );
 }
 
-const TextArea = styled.textarea<{scrollHeight: number}>`
+const TextArea = styled.textarea`
   border: none;
   padding: 0;
-  height: ${({scrollHeight}) => `${scrollHeight}px`};
   resize: none;
+  max-height: 80vh;
 `;
